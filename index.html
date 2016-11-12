@@ -1,139 +1,104 @@
 <!doctype html>
 <html lang="en">
 
-	<head>
-		<meta charset="utf-8">
+    <head>
+        <meta charset="utf-8">
 
-		<title>前端优化</title>
+        <title>前端优化</title>
 
-		<meta name="description" content="浅谈前端优化">
-		<meta name="author" content="Howard.Zuo">
+        <meta name="description" content="浅谈前端优化">
+        <meta name="author" content="Howard.Zuo">
 
-		<meta name="apple-mobile-web-app-capable" content="yes">
-		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-		<link rel="stylesheet" href="css/reveal.css">
-		<link rel="stylesheet" href="css/theme/blood.css" id="theme">
+        <link rel="stylesheet" href="css/reveal.css">
+        <link rel="stylesheet" href="css/theme/blood.css" id="theme">
 
-		<!-- Theme used for syntax highlighting of code -->
-		<link rel="stylesheet" href="lib/css/zenburn.css">
+        <!-- Theme used for syntax highlighting of code -->
+        <link rel="stylesheet" href="lib/css/zenburn.css">
 
-		<!-- Printing and PDF exports -->
-		<script>
-			var link = document.createElement( 'link' );
-			link.rel = 'stylesheet';
-			link.type = 'text/css';
-			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
-			document.getElementsByTagName( 'head' )[0].appendChild( link );
-		</script>
+        <!-- Printing and PDF exports -->
+        <script>
+            var link = document.createElement( 'link' );
+            link.rel = 'stylesheet';
+            link.type = 'text/css';
+            link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+            document.getElementsByTagName( 'head' )[0].appendChild( link );
+        </script>
 
-		<!--[if lt IE 9]>
-		<script src="lib/js/html5shiv.js"></script>
-		<![endif]-->
-	</head>
+        <!--[if lt IE 9]>
+        <script src="lib/js/html5shiv.js"></script>
+        <![endif]-->
+    </head>
 
-	<body>
+    <body>
 
-		<div class="reveal">
+        <div class="reveal">
 
-			<!-- Any section element inside of this container is displayed as a slide -->
-			<div class="slides">
-				<section>
-					<h1>浅谈前端优化</h1>
-					<p>
-						<small>Created by <a href="https://github.com/leftstick">leftstick</a> / <a href="http://weibo.com/1837649133">@右领军大都督</a></small>
-					</p>
-				</section>
+            <!-- Any section element inside of this container is displayed as a slide -->
+            <div class="slides">
+                <section>
+                    <h1>浅谈前端优化</h1>
+                    <p>
+                        <small>Created by <a href="https://github.com/leftstick">leftstick</a> / <a href="http://weibo.com/1837649133">@右领军大都督</a></small>
+                    </p>
+                </section>
 
-				<section>
-					<section>
+                <section>
+                    <section>
                         <h2>你的期待？</h2>
-					    <img src="img/worry.jpg" alt="">
-					</section>
-					<section>
-						<h2>不要优化</h2>
-						<img src="img/troll-face.png" alt="">
-					</section>
-				</section>
+                        <img src="img/worry.jpg" alt="">
+                    </section>
+                    <section>
+                        <h2>不要优化</h2>
+                        <img src="img/troll-face.png" alt="">
+                    </section>
+                </section>
 
-				<section>
-					<section>
-						<h1>什么是前端优化</h1>
-					</section>
-					<section>
-						<h2>两手抓</h2>
-						<ul>
-							<li>工程优化</li>
-							<li>程序优化</li>
-						</ul>
-					</section>
-				</section>
+                <section>
+                    <section>
+                        <h1>什么是前端优化</h1>
+                        <h3>优化什么？</h3>
+                    </section>
+                    <section>
+                        <h2>两手抓</h2>
+                        <ul>
+                            <li>工程优化</li>
+                            <li>程序优化</li>
+                        </ul>
+                    </section>
+                </section>
 
-				<section>
-					<section>
-						<h2>为什么要工程优化</h2>
-					</section>
-					<section>
-						<h2>前端空前繁荣</h2>
-						<p>详见：<a href="https://segmentfault.com/a/1190000007083024" target="_blank">2016年里做前端是怎样一种体验</a></p>
-						<p>问题是：内容太多，选择障碍？学习不能？</p>
-					</section>
-					<section>
-						<h2>前端规模扩大</h2>
-						<p>问题是：埋头就是干，工作效率低？各自为政，沟通不畅？</p>
-					</section>
-				</section>
+                <section>
+                    <section>
+                        <h2>为什么要工程优化</h2>
+                    </section>
+                    <section>
+                        <h2>前端空前繁荣</h2>
+                        <p>详见：<a href="https://segmentfault.com/a/1190000007083024" target="_blank">2016年里做前端是怎样一种体验</a></p>
+                        <p>问题是：内容太多，选择障碍？学习不能？</p>
+                    </section>
+                    <section>
+                        <h2>前端规模扩大</h2>
+                        <p>问题是：埋头就是干，工作效率低？各自为政，沟通不畅？</p>
+                    </section>
 
-				<section>
-					<h2>硬件：选择合适的工具</h2>
-					<table>
-						<thead>
-							<tr>
-								<th>领域</th>
-								<th>工具</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr>
-								<td>JavaScript</td>
-								<td><a href="http://gruntjs.com/">Grunt</a>, <a href="http://gulpjs.com/">gulp</a>, <a href="http://brunch.io/">brunch</a> 分割线 <a href="https://webpack.github.io/">webpack</a>, <a href="http://rollupjs.org/">rollup</a></td>
-							</tr>
-							<tr>
-								<td>CSS</td>
-								<td><a href="http://postcss.org/">PostCSS</a> 分割线 <a href="http://lesscss.org/">Less</a>, <a href="http://sass-lang.com/">Sass</a>, <a href="http://stylus-lang.com/">Stylus</a></td>
-							</tr>
-							<tr>
-								<td>HTML</td>
-								<td><a href="http://shopify.github.io/liquid/">Liquid</a>, <a href="http://ejs.co/">EJS</a>, <a href="https://pugjs.org">pug</a></td>
-							</tr>
-						</tbody>
-					</table>
-				</section>
+                    <section>
+                        <h2>前端责任变重</h2>
+                        <p>问题是：页面仔，呵呵！</p>
+                    </section>
+                </section>
 
-				<section>
-					<section>
-						<h2>软件：统一代码风格</h2>
-						<table>
-							<thead>
-								<tr>
-									<th>领域</th>
-									<th>工具</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr>
-									<td>JavaScript</td>
-									<td><a href="http://eslint.org">ESLint</a>, <a href="https://github.com/millermedeiros/esformatter">esformatter</a></td>
-								</tr>
-							</tbody>
-						</table>
-					</section>
-
-					<section>
-						<h2>风格之争</h2>
-					    <pre><code class="hljs javascript" data-trim>
+                <section>
+                    <section>
+                        <h1>工程团队问题赏析</h1>
+                    </section>
+                    <section>
+                        <h2>风格之争</h2>
+                        <pre><code class="hljs javascript" data-trim>
 function get( obj, key, defaultVal )
 {
   if(!obj){
@@ -141,21 +106,21 @@ function get( obj, key, defaultVal )
   }
   return obj[key] || defaultVal
 }
-					    </code></pre>
-						<p class="center">VS</p>
-					    <pre><code class="hljs javascript" data-trim>
+                        </code></pre>
+                        <p class="center">VS</p>
+                        <pre><code class="hljs javascript" data-trim>
 const get = function(obj, key, defaultVal) {
     if(!obj){
         return defaultVal;
     }
     return obj[key] || defaultVal;
 };
-					    </code></pre>
-					</section>
+                        </code></pre>
+                    </section>
 
-					<section>
-						<h2>约定之争</h2>
-					    <pre><code class="hljs javascript" data-trim>
+                    <section>
+                        <h2>约定之争</h2>
+                        <pre><code class="hljs javascript" data-trim>
 const get = function(obj, key, defaultVal) {
     let res;
     if(obj) {
@@ -169,58 +134,332 @@ const get = function(obj, key, defaultVal) {
     }
     return res;
 };
-					    </code></pre>
-						<p class="center">VS</p>
-					    <pre><code class="hljs javascript" data-trim>
+                        </code></pre>
+                        <p class="center">VS</p>
+                        <pre><code class="hljs javascript" data-trim>
 const get = function(obj, key, defaultVal) {
     if(!obj){
         return defaultVal;
     }
     return obj[key] || defaultVal;
 };
-					    </code></pre>
-					</section>
+                        </code></pre>
+                    </section>
 
-					<section>
-						<h2>框架之争</h2>
-						<p><a href="https://angular.io/">angular</a>, <a href="https://facebook.github.io/react/">React</a>, <a href="https://vuejs.org/">Vue</a></p>
-					</section>
-				</section>
+                    <section>
+                        <h2>Tab Space 之争</h2>
+                        <p>详见：<a href="http://johnhax.net/2016/tab-vs-space">tab-vs-space by Hax</a></p>
+                        <p>详见：<a href="http://ooxx.me/tabs-vs-spaces.orz">tab-vs-space by MaDao</a></p>
+                    </section>
 
-				<section style="text-align: left;">
-					<h1>额外阅读</h1>
-					<p>
-						- <a href="https://segmentfault.com/a/1190000006636138">我眼中软件工程里的常识</a> <br>
-					</p>
-				</section>
+                    <section>
+                        <h2>操作系统之争</h2>
+                        <p><code>OS X</code> ? </p>
+                        <p><code>Windows</code> ?</p>
+                        <p><code>Linux</code> ?</p>
+                    </section>
 
-			</div>
+                    <section>
+                        <h1>然并卵</h1>
+                        <h3 class="fragment fade-in">说破大天，也仅仅是不同人的喜好问题</h3>
+                        <h3 class="fragment fade-in">但是。。。。</h3>
+                    </section>
 
-		</div>
+                    <section>
+                        <h2 class="fragment fade-in">土匪 VS 三角洲</h2>
+                        <h2 class="fragment fade-in">豆腐渣工程 VS 米兰大教堂</h2>
+                        <h2 class="fragment fade-in">独乐乐 VS 众乐乐</h2>
+                        <h2 class="fragment fade-in">花心大少 VS 负责到底</h2>
+                    </section>
 
-		<script src="lib/js/head.min.js"></script>
-		<script src="js/reveal.js"></script>
+                    <section>
+                        <h1>规矩是可靠团队的前提</h1>
+                    </section>
 
-		<script>
-			// More info https://github.com/hakimel/reveal.js#configuration
-			Reveal.initialize({
-				controls: true,
-				progress: true,
-				history: true,
-				center: true,
-				transition: 'slide', // none/fade/slide/convex/concave/zoom
-				width: 1020,
-				// More info https://github.com/hakimel/reveal.js#dependencies
-				dependencies: [
-					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
-					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
-					{ src: 'plugin/zoom-js/zoom.js', async: true },
-					{ src: 'plugin/notes/notes.js', async: true }
-				]
-			});
-		</script>
+                    <section>
+                        <h2>软件：统一代码风格</h2>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>领域</th>
+                                    <th>工具</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>JavaScript</td>
+                                    <td><a href="http://eslint.org">ESLint</a>, <a href="https://github.com/millermedeiros/esformatter">esformatter</a></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </section>
 
-	</body>
+                    <section>
+                        <h2>感受Linting</h2>
+                        <img src="img/linting.gif" alt="">
+                    </section>
+
+                    <section>
+                        <h2>感受Formatting</h2>
+                        <img src="img/formatting.gif" alt="">
+                    </section>
+
+                    <section>
+                        <h2>不在无意义的事上花时间</h2>
+                        <h2 class="fragment fade-in">打造高效率、高质量机动部队</h2>
+                    </section>
+                </section>
+
+                <section>
+                    <section>
+                        <h1>工程化问题赏析</h1>
+                    </section>
+
+                    <section>
+                        <h3>太多请求</h3>
+                        <h3 class="fragment fade-in">不使用CDN</h3>
+                        <h3 class="fragment fade-in">未合理利用缓存</h3>
+                        <h3 class="fragment fade-in">无压缩</h3>
+                        <h3 class="fragment fade-in">太多跳转</h3>
+                        <h3 class="fragment fade-in">太多DOM操作</h3>
+                        <h3 class="fragment fade-in">使用过度资源，例如：大图片缩小显示</h3>
+                    </section>
+
+                    <section>
+                        <h2>减少请求</h2>
+                        <ul>
+                            <li>雪碧图、小图片转<code>base64</code></li>
+                            <li>CSS concatenation</li>
+                            <li>JS concatenation, bundling</li>
+                        </ul>
+                    </section>
+
+                    <section>
+                        <h2>利用CDN</h2>
+                        <img src="img/cdn-ntt-com.jpg" alt="">
+                    </section>
+
+                    <section>
+                        <h2>压缩静态资源</h2>
+                        <ul>
+                            <li>JavaScript minify</li>
+                            <li>CSS minify</li>
+                            <li>HTML minity</li>
+                            <li>网络请求<code>gzip</code></li>
+                        </ul>
+                    </section>
+
+                    <section>
+                        <h2>不做无谓跳转</h2>
+                        <p>譬如：<code>www.taobao.com/</code> => <code>wwww.taobao.com</code></p>
+                        <small>有SEO顾虑时，额外处理</small>
+                    </section>
+
+                    <section>
+                        <h2>减少DOM操作</h2>
+                        <ul>
+                            <li>慎重思考大批量的DOM操作</li>
+                            <li>引入<code>virtual DOM</code>工具</li>
+                        </ul>
+                    </section>
+
+                    <section>
+                        <h2>使用合适的资源</h2>
+                        <ul>
+                            <li>显示区域<code>70px * 70px</code>，就别用什么高清图</li>
+                            <li>只用个模版引擎，就别引入<code>angular.js</code></li>
+                            <li>只用栅栏布局，就别把<code>Bootstrap</code>一整套都引入</li>
+                            <li>只用个“退出”图标，就别把一整套<code>font-awesome</code>引入</li>
+                        </ul>
+                    </section>
+                    
+                </section>
+
+                <section>
+                    <section>
+                        <h1>程序问题赏析</h1>
+                    </section>
+                    <section>
+                        <h2>不使用严格模式</h2>
+                        <pre><code class="hljs javascript" data-trim>
+(function() {
+    userName = 'HanMeimei';
+}());
+console.log('userName', userName);
+                        </code></pre>
+                        <p class="center">改成</p>
+                        <pre><code class="hljs javascript" data-trim>
+'use strict';
+(function() {
+    userName = 'HanMeimei';
+}());
+console.log('userName', userName);//ReferenceError
+                        </code></pre>
+                    </section>
+
+                    <section>
+                        <h2>不用<code>===</code></h2>
+                        <pre><code class="hljs javascript" data-trim>
+1 == '1'; // true
+false == '  '; // true
+true == [1]; // true
+                        </code></pre>
+                        <img src="img/wtf.jpg" alt="">
+                    </section>
+
+                    <section>
+                        <h2>不清晰的表达式</h2>
+                        <pre><code class="hljs javascript" data-trim>
+if (options.minLat && options.maxLat && options.minLng && options.maxLng) {
+    //...
+}
+                        </code></pre>
+                        <p class="center">改成</p>
+                        <pre><code class="hljs javascript" data-trim>
+const hasCoordinate = options.minLat && options.maxLat && options.minLng && options.maxLng; 
+if (hasCoordinate) {
+    //...
+}
+                        </code></pre>
+                    </section>
+
+                    <section>
+                        <h2>执着使用<code>for</code></h2>
+                        <pre><code class="hljs javascript" data-trim>
+var result = [];
+for (var i = 0; i < homeIds.length; i++) {
+    for (var j = 0; j < data.length; j++) {
+        if (homeIds[i] == data[j].propertyId) {
+            result.push(data[j]);
+        }
+    }
+}
+                        </code></pre>
+                        <p class="center">改成</p>
+                        <pre><code class="hljs javascript" data-trim>
+const result = data.filter(d => homeIds.includes(d.propertyId));
+                        </code></pre>
+                    </section>
+
+                    <section>
+                        <h2>疯狂拼接字符串</h2>
+                        <pre><code class="hljs javascript" data-trim>
+var widgetStructure = '<div id=' + widgetID + '>' +
+    '<h2 id="' + widgetTitleID + '">' + widgetTitle + '</h2>' +
+    '<div id="' + widgetContentID + '" style="' + widgetContentStyles + '">' +
+        (function() {
+            var paras = '';
+            for (var i = 0; i < paraItems.length; ++i) {
+                paras += '<p>' + paraItems[i] + '</p>';
+            }
+            return paras;
+        })() +
+    '</div>' +
+'</div>';
+                        </code></pre>
+                        <p>试试模版工具吧</p>
+                    </section>
+
+                    <section>
+                        <h2>缺乏抽象</h2>
+                        <pre><code class="hljs javascript" data-trim>
+const putElephantInFridge = function () {
+    raiseArm();
+    holdFridgeDoor();
+    holdItTightly();
+    pullFridgeDoor();
+    while (doorAnglar > 90) { pullFridgeDoorBack(20); }
+    pushElephant();
+    while (cannotCloseDoor) {
+        riseFoot();
+        kickElephant();
+        tryCloseDoor();
+    }
+};
+                        </code></pre>
+                        <p class="center">改成</p>
+                        <pre><code class="hljs javascript" data-trim>
+const putElephantInFridge = function () {
+    openFridgeDoor();
+    putElephant();
+    closeDoor();
+};
+                        </code></pre>
+                    </section>
+                    <section>
+                        <h2>滥用正则表达式</h2>
+                        <pre><code class="hljs javascript" data-trim>
+const reg = /(.*)*b.*/;
+reg.test('24rih');// ~1ms
+reg.test('24rih9jihsf6j');// ~20
+reg.test('24rih9jihsf90uknjk8yzxc');// ~329ms
+                        </code></pre>
+                        <p>提防<a href="https://en.wikipedia.org/wiki/ReDoS">regular expression denial of service</a></p>
+                    </section>
+                </section>
+
+                <section>
+                    <h2>硬件：选择合适的工具</h2>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>领域</th>
+                                <th>工具</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>JavaScript</td>
+                                <td><a href="http://gruntjs.com/">Grunt</a>, <a href="http://gulpjs.com/">gulp</a>, <a href="http://brunch.io/">brunch</a> 分割线 <a href="https://webpack.github.io/">webpack</a>, <a href="http://rollupjs.org/">rollup</a></td>
+                            </tr>
+                            <tr>
+                                <td>CSS</td>
+                                <td><a href="http://postcss.org/">PostCSS</a> 分割线 <a href="http://lesscss.org/">Less</a>, <a href="http://sass-lang.com/">Sass</a>, <a href="http://stylus-lang.com/">Stylus</a></td>
+                            </tr>
+                            <tr>
+                                <td>HTML</td>
+                                <td><a href="http://shopify.github.io/liquid/">Liquid</a>, <a href="http://ejs.co/">EJS</a>, <a href="https://pugjs.org">pug</a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+
+                
+
+                <section style="text-align: left;">
+                    <h1>额外阅读</h1>
+                    <p>
+                        - <a href="https://segmentfault.com/a/1190000006636138">我眼中软件工程里的常识</a> <br>
+                    </p>
+                </section>
+
+            </div>
+
+        </div>
+
+        <script src="lib/js/head.min.js"></script>
+        <script src="js/reveal.js"></script>
+
+        <script>
+            // More info https://github.com/hakimel/reveal.js#configuration
+            Reveal.initialize({
+                controls: true,
+                progress: true,
+                history: true,
+                center: true,
+                transition: 'slide', // none/fade/slide/convex/concave/zoom
+                width: 1090,
+                // More info https://github.com/hakimel/reveal.js#dependencies
+                dependencies: [
+                    { src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+                    { src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+                    { src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+                    { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+                    { src: 'plugin/zoom-js/zoom.js', async: true },
+                    { src: 'plugin/notes/notes.js', async: true }
+                ]
+            });
+        </script>
+
+    </body>
 </html>
