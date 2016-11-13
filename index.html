@@ -208,6 +208,11 @@ const get = function(obj, key, defaultVal) {
                         <h2>不在无意义的事上花时间</h2>
                         <h2 class="fragment fade-in">打造高效率、高质量机动部队</h2>
                     </section>
+
+                    <section>
+                        <h2>你应该是这样的</h2>
+                        <img src="img/tears-of-sun.jpg" alt="">
+                    </section>
                 </section>
 
                 <section>
@@ -245,7 +250,7 @@ const get = function(obj, key, defaultVal) {
                             <li>JavaScript minify</li>
                             <li>CSS minify</li>
                             <li>HTML minity</li>
-                            <li>网络请求<code>gzip</code></li>
+                            <li>网络请求<code>gzip</code>，详见<a href="http://nginx.org/en/docs/http/ngx_http_gzip_module.html#directives">nginx-gzip</a></li>
                         </ul>
                     </section>
 
@@ -258,7 +263,7 @@ const get = function(obj, key, defaultVal) {
                     <section>
                         <h2>减少DOM操作</h2>
                         <ul>
-                            <li>慎重思考大批量的DOM操作</li>
+                            <li>慎重思考大批量的DOM操作，详见：<a href="#/6/6">疯狂操作DOM</a></li>
                             <li>引入<code>virtual DOM</code>工具</li>
                         </ul>
                     </section>
@@ -285,10 +290,10 @@ const get = function(obj, key, defaultVal) {
 (function() {
     userName = 'HanMeimei';
 }());
-console.log('userName', userName);
+console.log('userName', userName);//全局变量，居然能运行？
                         </code></pre>
                         <p class="center">改成</p>
-                        <pre><code class="hljs javascript" data-trim>
+                        <pre class="fragment fade-in"><code class="hljs javascript" data-trim>
 'use strict';
 (function() {
     userName = 'HanMeimei';
@@ -310,14 +315,14 @@ true == [1]; // true
                     <section>
                         <h2>不清晰的表达式</h2>
                         <pre><code class="hljs javascript" data-trim>
-if (options.minLat && options.maxLat && options.minLng && options.maxLng) {
+if ((value.length === 4 || value.length === 5) && (Math.round(value) === parseInt(value))) {
     //...
 }
                         </code></pre>
                         <p class="center">改成</p>
-                        <pre><code class="hljs javascript" data-trim>
-const hasCoordinate = options.minLat && options.maxLat && options.minLng && options.maxLng; 
-if (hasCoordinate) {
+                        <pre class="fragment fade-in"><code class="hljs javascript" data-trim>
+const isZipCode = (value.length === 4 || value.length === 5) && (Math.round(value) === parseInt(value)); 
+if (isZipCode) {
     //...
 }
                         </code></pre>
@@ -336,7 +341,7 @@ for (var i = 0; i < homeIds.length; i++) {
 }
                         </code></pre>
                         <p class="center">改成</p>
-                        <pre><code class="hljs javascript" data-trim>
+                        <pre class="fragment fade-in"><code class="hljs javascript" data-trim>
 const result = data.filter(d => homeIds.includes(d.propertyId));
                         </code></pre>
                     </section>
@@ -361,6 +366,24 @@ var widgetStructure = '<div id=' + widgetID + '>' +
                     </section>
 
                     <section>
+                        <h2>疯狂操作DOM</h2>
+                        <pre><code class="hljs javascript" data-trim>
+for (var i = 0; i < 100; ++i) {
+    ele.appendChild(document.createElement('div'));
+}
+                        </code></pre>
+                        <p class="center">要么改用<code>fragment</code></p>
+                        <pre><code class="hljs javascript" data-trim>
+const fragment = document.createDocumentFragment();
+for (let i = 0; i < 100; ++i) {
+    fragment.appendChild(document.createElement('div'));
+}
+ele.appendChild(fragment);
+                        </code></pre>
+                        <p class="center">要么改用试试<code>virtual DOM</code>工具</p>
+                    </section>
+
+                    <section>
                         <h2>缺乏抽象</h2>
                         <pre><code class="hljs javascript" data-trim>
 const putElephantInFridge = function () {
@@ -378,7 +401,7 @@ const putElephantInFridge = function () {
 };
                         </code></pre>
                         <p class="center">改成</p>
-                        <pre><code class="hljs javascript" data-trim>
+                        <pre class="fragment fade-in"><code class="hljs javascript" data-trim>
 const putElephantInFridge = function () {
     openFridgeDoor();
     putElephant();
@@ -389,47 +412,106 @@ const putElephantInFridge = function () {
                     <section>
                         <h2>滥用正则表达式</h2>
                         <pre><code class="hljs javascript" data-trim>
-const reg = /(.*)*b.*/;
+const reg = /a*(.*)*d.*/;
 reg.test('24rih');// ~1ms
 reg.test('24rih9jihsf6j');// ~20
 reg.test('24rih9jihsf90uknjk8yzxc');// ~329ms
                         </code></pre>
-                        <p>提防<a href="https://en.wikipedia.org/wiki/ReDoS">regular expression denial of service</a></p>
+                        <p class="fragment fade-in">提防<a href="https://en.wikipedia.org/wiki/ReDoS">regular expression denial of service</a></p>
+                    </section>
+
+                    <section>
+                        <h2>滥用闭包</h2>
+                        <pre><code class="hljs javascript" data-trim>
+for (let i = 0; i < 1000000; i++) {
+    const setupAlertTimeout = function() {
+        let msg = 'Message to alert';
+        setTimeout(function() {
+            let test = 'aaa' + msg;
+        }, 100);
+    };
+    setupAlertTimeout();
+}//totally ~951ms
+                        </code></pre>
+                        <p class="center">改成</p>
+                        <pre><code class="hljs javascript" data-trim>
+const alertMsg = function() {
+    let msg = 'Message to alert';
+    let test = 'aaa' + msg;
+};
+
+for (let i = 0; i < 1000000; i++) {
+    const setupAlertTimeout = function() {
+        setTimeout(alertMsg, 100);
+    };
+    setupAlertTimeout();
+}//totally ~441ms
+                        </code></pre>
+                    </section>
+
+                    <section>
+                        <h1>优化(重构)之路漫漫其修远兮</h1>
                     </section>
                 </section>
 
                 <section>
-                    <h2>硬件：选择合适的工具</h2>
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>领域</th>
-                                <th>工具</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>JavaScript</td>
-                                <td><a href="http://gruntjs.com/">Grunt</a>, <a href="http://gulpjs.com/">gulp</a>, <a href="http://brunch.io/">brunch</a> 分割线 <a href="https://webpack.github.io/">webpack</a>, <a href="http://rollupjs.org/">rollup</a></td>
-                            </tr>
-                            <tr>
-                                <td>CSS</td>
-                                <td><a href="http://postcss.org/">PostCSS</a> 分割线 <a href="http://lesscss.org/">Less</a>, <a href="http://sass-lang.com/">Sass</a>, <a href="http://stylus-lang.com/">Stylus</a></td>
-                            </tr>
-                            <tr>
-                                <td>HTML</td>
-                                <td><a href="http://shopify.github.io/liquid/">Liquid</a>, <a href="http://ejs.co/">EJS</a>, <a href="https://pugjs.org">pug</a></td>
-                            </tr>
-                        </tbody>
-                    </table>
+                    <section>
+                        <h2>选择合适的工具</h2>
+                        <h4>提高开发效率</h4>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>领域</th>
+                                    <th>工具</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>JavaScript</td>
+                                    <td><a href="http://gruntjs.com/">Grunt</a>, <a href="http://gulpjs.com/">gulp</a>, <a href="http://brunch.io/">brunch</a> | <a href="http://browserify.org/">browserify</a>, <a href="https://webpack.github.io/">webpack</a>, <a href="http://rollupjs.org/">rollup</a></td>
+                                </tr>
+                                <tr>
+                                    <td>CSS</td>
+                                    <td><a href="http://postcss.org/">PostCSS</a> | <a href="http://lesscss.org/">Less</a>, <a href="http://sass-lang.com/">Sass</a> | <a href="http://stylus-lang.com/">Stylus</a></td>
+                                </tr>
+                                <tr>
+                                    <td>HTML</td>
+                                    <td><a href="http://shopify.github.io/liquid/">Liquid</a>, <a href="http://ejs.co/">EJS</a>, <a href="https://pugjs.org">pug</a></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </section>
+
+                    <section>
+                        <h2>利用常见的工具</h2>
+                        <h4>发现问题所在</h4>
+                        <img src="img/timeline.png" alt="">
+                    </section>
+
+                    <section>
+                        <h2>定位罪魁祸首</h2>
+                        <img src="img/locate-caller.png" alt="">
+                    </section>
+
+                    <section>
+                        <h2>跟上时代</h2>
+                        <p>今天你的网站<code>http2</code>了么？</p>
+                        <img src="img/http2.gif" alt="">
+                    </section>
                 </section>
 
-                
+                <section>
+                    <h2>总结</h2>
+                    <p>优化不止是牛逼、吊诡算法，还有软件工程里的规矩</p>
+                    <p>好的软件应该时刻保持警惕，注意代码中的“bad smell”</p>
+                    <p>高效团队应该打造 || 善用工具，而非“埋头就是干”</p>
+                </section>
 
                 <section style="text-align: left;">
                     <h1>额外阅读</h1>
                     <p>
                         - <a href="https://segmentfault.com/a/1190000006636138">我眼中软件工程里的常识</a> <br>
+                        - <a href="http://www.php100.com/html/itnews/it/2012/0229/9946.html">优秀程序设计的18大原则</a> <br>
                     </p>
                 </section>
 
