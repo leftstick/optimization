@@ -415,7 +415,7 @@ const putElephantInFridge = function () {
                         <pre><code class="hljs javascript" data-trim>
 const reg = /a*(.*)*d.*/;
 reg.test('24rih');// ~1ms
-reg.test('24rih9jihsf6j');// ~20
+reg.test('24rih9jihsf6j');// ~20ms
 reg.test('24rih9jihsf90uknjk8yzxc');// ~329ms
                         </code></pre>
                         <p class="fragment fade-in">提防<a href="https://en.wikipedia.org/wiki/ReDoS">regular expression denial of service</a></p>
@@ -503,7 +503,7 @@ for (let i = 0; i < 1000000; i++) {
 
                 <section>
                     <h2>总结</h2>
-                    <p>优化不止是牛逼、吊诡算法，还有软件工程里的规矩</p>
+                    <p>优化不止是牛逼、吊诡的算法，还有软件工程里的规矩</p>
                     <p>好的软件应该时刻保持警惕，注意代码中的“bad smell”</p>
                     <p>高效团队应该打造 || 善用工具，而非“埋头就是干”</p>
                 </section>
