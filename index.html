@@ -247,10 +247,19 @@ const get = function(obj, key, defaultVal) {
                     </section>
 
                     <section>
+                        <h2>合理使用缓存</h2>
+                        <ul>
+                            <li>配置<a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Cache-Control">Cache-Control: max-age</a></li>
+                            <li>配置<a href="https://bitworking.org/news/150/REST-Tip-Deep-etags-give-you-more-benefits">ETags</a></li>
+                            <li>使用<a href="https://developer.mozilla.org/en-US/docs/Web/API/Web_Storage_API">Web Storage API</a></li>
+                        </ul>
+                    </section>
+
+                    <section>
                         <h2>压缩静态资源</h2>
                         <ul>
-                            <li>JavaScript minify</li>
-                            <li>CSS minify</li>
+                            <li>JavaScript minify. <a href="http://jquery.com/download/">jQuery</a> 266k => 78k</li>
+                            <li>CSS minify. <a href="http://getbootstrap.com/">Bootstrap</a> 146k => 121k</li>
                             <li>HTML minity</li>
                             <li>网络请求<code>gzip</code>，详见<a href="http://nginx.org/en/docs/http/ngx_http_gzip_module.html#directives">nginx-gzip</a></li>
                         </ul>
@@ -497,7 +506,7 @@ for (let i = 0; i < 1000000; i++) {
 
                     <section>
                         <h2>WebPagetest</h2>
-                        <img src="img/locate-caller.png" alt="">
+                        <a href="http://www.webpagetest.org/"><img src="img/webpagetest.png" alt=""></a>
                     </section>
 
                     <section>
