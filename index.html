@@ -228,7 +228,6 @@ const get = function(obj, key, defaultVal) {
                         <h3 class="fragment fade-in">未合理利用缓存</h3>
                         <h3 class="fragment fade-in">无压缩</h3>
                         <h3 class="fragment fade-in">太多跳转</h3>
-                        <h3 class="fragment fade-in">太多DOM操作</h3>
                         <h3 class="fragment fade-in">使用过度资源，例如：大图片缩小显示</h3>
                     </section>
 
@@ -272,14 +271,6 @@ const get = function(obj, key, defaultVal) {
                     </section>
 
                     <section>
-                        <h2>减少DOM操作</h2>
-                        <ul>
-                            <li>慎重思考大批量的DOM操作，详见：<a href="#/6/6">疯狂操作DOM</a></li>
-                            <li>引入<code>virtual DOM</code>工具</li>
-                        </ul>
-                    </section>
-
-                    <section>
                         <h2>使用合适的资源</h2>
                         <ul>
                             <li>显示区域<code>70px * 70px</code>，就别用什么高清图</li>
@@ -311,6 +302,7 @@ console.log('userName', userName);//全局变量，居然能运行？
 }());
 console.log('userName', userName);//ReferenceError
                         </code></pre>
+                        <p class="fragment fade-in"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Strict_mode/Transitioning_to_strict_mode">Why Strict mode</a></p>
                     </section>
 
                     <section>
@@ -383,15 +375,16 @@ for (var i = 0; i < 100; ++i) {
     ele.appendChild(document.createElement('div'));
 }
                         </code></pre>
-                        <p class="center">要么改用<code>fragment</code></p>
-                        <pre><code class="hljs javascript" data-trim>
+                        <p class="center">要么改成</p>
+                        <pre class="fragment fade-in"><code class="hljs javascript" data-trim>
 const fragment = document.createDocumentFragment();
 for (let i = 0; i < 100; ++i) {
     fragment.appendChild(document.createElement('div'));
 }
 ele.appendChild(fragment);
                         </code></pre>
-                        <p class="center">要么改用试试<code>virtual DOM</code>工具</p>
+                        <p class="center fragment fade-in"><a href="https://developer.mozilla.org/en-US/docs/Web/API/Document/createDocumentFragment">fragment</a></p>
+                        <p class="center fragment fade-in">要么改用试试<code>virtual DOM</code>工具</p>
                     </section>
 
                     <section>
