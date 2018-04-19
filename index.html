@@ -440,7 +440,7 @@ const setupAlertTimeout = function() {
 };
 for (let i = 0; i < 5000000; i++) {
     setupAlertTimeout();
-}//totally ~3500ms
+}// totally ~3500ms
                         </code></pre>
                         <p class="center">改成</p>
                         <pre class="fragment fade-in"><code class="hljs javascript" data-trim>
@@ -452,7 +452,29 @@ const setupAlertTimeout = function() {
 };
 for (let i = 0; i < 5000000; i++) {
     setupAlertTimeout();
-}//totally ~2200ms
+}// totally ~2200ms
+                        </code></pre>
+                    </section>
+
+                    <section>
+                        <h2>在循环里定义函数</h2>
+                        <pre><code class="hljs javascript" data-trim>
+for (let i = 0; i < 500000000; i++) {
+    function cal(a, b) {
+        return a + b
+    }
+    cal(i, i + 1)
+}// totally ~1314ms
+                        </code></pre>
+                        <p class="center">改成</p>
+                        <pre class="fragment fade-in"><code class="hljs javascript" data-trim>
+for (let i = 0; i < 500000000; i++) {
+    cal(i, i + 1)
+}
+    
+function cal(a, b) {
+    return a + b
+}// totally ~578ms
                         </code></pre>
                     </section>
 
